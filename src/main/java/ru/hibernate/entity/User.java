@@ -16,6 +16,15 @@ import java.util.Objects;
 @NoArgsConstructor
 public class User {
 
+    public User(String email, String username) {
+        this.email = email;
+        this.username = username;
+    }
+
+    public User(String email) {
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //  @Column(name = "id", nullable = false)
@@ -33,4 +42,13 @@ public class User {
     @Column(name = "username", nullable = false, length = -1)
     private String username;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
 }

@@ -53,21 +53,21 @@ public class Main {
 //        Transaction transaction = session.beginTransaction();
 //        session.createQuery(criteriaDelete).executeUpdate();
 //        transaction.commit();
-
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaUpdate<User> criteriaUpdate = cb.createCriteriaUpdate(User.class);
-        Root<User> root = criteriaUpdate.from(User.class);
-
-        criteriaUpdate.set("email", "2345435");
-        criteriaUpdate.where(cb.equal(root.get("id"), 10516));
-
-        Transaction transaction = session.beginTransaction();
-        session.createQuery(criteriaUpdate).executeUpdate();
-        transaction.commit();
-
-        //  session.getTransaction().commit();
-
-        session.close();
-        HibernateUtil.close();
+//
+//        CriteriaBuilder cb = session.getCriteriaBuilder();
+//        CriteriaUpdate<User> criteriaUpdate = cb.createCriteriaUpdate(User.class);
+//        Root<User> root = criteriaUpdate.from(User.class);
+//
+//        criteriaUpdate.set("email", "2345435");
+//        criteriaUpdate.where(cb.equal(root.get("id"), 10516));
+//
+//        Transaction transaction = session.beginTransaction();
+//        session.createQuery(criteriaUpdate).executeUpdate();
+//        transaction.commit();
+//
+//        //  session.getTransaction().commit();
+//
+//        session.close();
+//        HibernateUtil.close();
     }
 }
