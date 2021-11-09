@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -41,6 +42,12 @@ public class User {
     @Basic
     @Column(name = "username", nullable = false, length = -1)
     private String username;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Category> categoryList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Priority> priorityList;
 
     @Override
     public String toString() {

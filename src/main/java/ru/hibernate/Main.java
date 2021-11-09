@@ -1,12 +1,16 @@
 package ru.hibernate;
 
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import ru.hibernate.entity.Category;
 import ru.hibernate.entity.User;
+
+import java.util.List;
 
 
 @Log4j2
@@ -16,6 +20,19 @@ public class Main {
         log.info("Hibernate tutorial started");
 
         Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Query query = session.createQuery("from Category");
+        query.setMaxResults(10);
+
+        List<Category> categories = query.getResultList();
+
+        for (Category c : categories)  {
+            log.info(c.getTitle());
+        }
+
+        session.close();
+
+        HibernateUtil.close();
 
         //  session.getTransaction().begin();
 
@@ -69,5 +86,6 @@ public class Main {
 //
 //        session.close();
 //        HibernateUtil.close();
+
     }
 }
