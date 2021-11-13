@@ -1,6 +1,5 @@
 package ru.hibernate.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,33 +7,37 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Objects;
+import java.util.Set;
+
+/*
+
+Все доступные роли, которые будут привязаны к пользователю
+
+*/
+
 
 @Entity
-@Table(name = "priority", schema = "todolist", catalog = "postgres")
+@Table(name = "role_data", schema = "todolist", catalog = "postgres")
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
-public class Priority {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter
+public class Role {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name; // название роли
 
-    private String color;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")  //foreign key
-    private User user;
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	private Set<User> users;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Priority priority = (Priority) o;
-        return id.equals(priority.id);
+        Role role = (Role) o;
+        return Objects.equals(id, role.id);
     }
 
     @Override

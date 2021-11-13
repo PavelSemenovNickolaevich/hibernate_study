@@ -21,13 +21,18 @@ public class Main {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        Query query = session.createQuery("from Category");
+        Query query = session.createQuery("from User ");
         query.setMaxResults(10);
 
-        List<Category> categories = query.getResultList();
+        // List<Category> categories = query.getResultList();
+        List<User> users = query.getResultList();
 
-        for (Category c : categories)  {
-            log.info(c.getTitle());
+//        for (Category c : categories)  {
+//            log.info(c.getTitle());
+//        }
+
+        for (User u : users) {
+            log.info(u.getUsername());
         }
 
         session.close();

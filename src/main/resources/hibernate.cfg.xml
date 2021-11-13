@@ -10,10 +10,16 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">root</property>
         <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.default_schema">todolist</property>
+        <property name="hibernate.default_catalog">postgres</property>
 <!--       // <property name="show_sql">true</property>-->
         <mapping class="ru.hibernate.entity.User"/>
         <mapping class="ru.hibernate.entity.Category"/>
         <mapping class="ru.hibernate.entity.Priority"/>
+        <mapping class="ru.hibernate.entity.Stat"/>
+        <mapping class="ru.hibernate.entity.Activity"/>
+        <mapping class="ru.hibernate.entity.Role"/>
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
