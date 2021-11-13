@@ -101,6 +101,14 @@ public class Main {
         log.info(u1);
         session.close();// закрыть первуб сессию
 
+        log.info("hit " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheHitCount());
+        log.info("miss " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheMissCount());
+        log.info("put " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCachePutCount());
+
+        for (String s: HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheRegionNames()) {
+            log.info(s);
+        }
+
         // откроем новую сессию
         session = HibernateUtil.getSessionFactory().openSession();
         User u2 = session.get(User.class, 10025L); // должен получить его из L2C

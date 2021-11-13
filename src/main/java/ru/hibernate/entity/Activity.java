@@ -24,7 +24,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Activity { // название таблицы будет браться автоматически по названию класса с маленькой буквы: activity
 
     @Id
@@ -37,7 +37,8 @@ public class Activity { // название таблицы будет брать
     @Column(updatable = false)
     private String uuid; // создается только один раз с помощью триггера в БД
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

@@ -16,7 +16,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Stat { // в этой таблице всего 1 запись, которая обновляется (но никогда не удаляется)
 
     @Id
@@ -29,7 +29,8 @@ public class Stat { // в этой таблице всего 1 запись, к�
     @Column(name = "uncompleted_total", updatable = false)
     private Long uncompletedTotal; // значение задается в триггере в БД
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "user_id", referencedColumnName = "id") // по каким полям связывать (foreign key)
     private User user;
 

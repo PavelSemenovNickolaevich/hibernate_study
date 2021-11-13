@@ -17,7 +17,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Priority {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
