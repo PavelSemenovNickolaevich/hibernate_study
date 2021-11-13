@@ -3,6 +3,7 @@ package ru.hibernate.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import java.util.Objects;
@@ -22,6 +23,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Setter
 @Getter
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Activity { // название таблицы будет браться автоматически по названию класса с маленькой буквы: activity
 
     @Id

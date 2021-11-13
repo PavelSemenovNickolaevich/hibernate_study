@@ -18,14 +18,24 @@ tasks.withType(JavaCompile) {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    //ядро Hibernate
     implementation 'org.hibernate:hibernate-core-jakarta:5.5.6.Final'
+
+    //JDBC driver
     implementation 'org.postgresql:postgresql:42.2.23'
 
+    //Lombok
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
+    //Logging
     implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+
+    // кеширование 2го уровня
+    implementation 'org.hibernate:hibernate-jcache:5.5.6.Final' // реализация API
+    implementation 'org.ehcache:ehcache:3.9.5' // API из JSR
 }
 
 test {

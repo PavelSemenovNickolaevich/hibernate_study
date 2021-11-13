@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Objects;
 
@@ -14,6 +15,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @Setter
 @Getter
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Stat { // в этой таблице всего 1 запись, которая обновляется (но никогда не удаляется)
 
     @Id

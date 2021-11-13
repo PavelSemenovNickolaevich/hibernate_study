@@ -12,6 +12,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.default_schema">todolist</property>
         <property name="hibernate.default_catalog">postgres</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
 <!--       // <property name="show_sql">true</property>-->
         <mapping class="ru.hibernate.entity.User"/>
         <mapping class="ru.hibernate.entity.Category"/>

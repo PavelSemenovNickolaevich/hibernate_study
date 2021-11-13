@@ -16,32 +16,32 @@ import java.util.List;
 @Log4j2
 public class Main {
     public static void main(String[] args) {
-
-        log.info("Hibernate tutorial started");
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        Query query = session.createQuery("from User ");
-        query.setMaxResults(10);
-
-        // List<Category> categories = query.getResultList();
-        List<User> users = query.getResultList();
+//
+//        log.info("Hibernate tutorial started");
+//
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//
+//        Query query = session.createQuery("from User ");
+//        query.setMaxResults(10);
+//
+//        // List<Category> categories = query.getResultList();
+//        List<User> users = query.getResultList();
 
 //        for (Category c : categories)  {
 //            log.info(c.getTitle());
 //        }
 
-        for (User u : users) {
-            log.info(u.getUsername());
-        }
-
-        session.close();
-
-        HibernateUtil.close();
-
-        //  session.getTransaction().begin();
-
-        log.info("Transaction started");
+//        for (User u : users) {
+//            log.info(u.getUsername());
+//        }
+//
+//        session.close();
+//
+//        HibernateUtil.close();
+//
+//        //  session.getTransaction().begin();
+//
+//        log.info("Transaction started");
 
 //        User user = new User();
 //        user.setEmail("terminator11@gmail.com");
@@ -91,6 +91,24 @@ public class Main {
 //
 //        session.close();
 //        HibernateUtil.close();
+
+        log.info("Hibernate tutorial started");
+
+        //сразу получаем готовый SessionFactory и сразу создаем сессию
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        User u1 = session.get(User.class, 10025L);
+        log.info(u1);
+        session.close();// закрыть первуб сессию
+
+        // откроем новую сессию
+        session = HibernateUtil.getSessionFactory().openSession();
+        User u2 = session.get(User.class, 10025L); // должен получить его из L2C
+        log.info(u2);
+
+        session.close();// закрыть сессию
+
+        HibernateUtil.close(); // закрыть Session Factory - очищается кеш 2го уровня
 
     }
 }
