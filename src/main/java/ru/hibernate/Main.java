@@ -7,6 +7,7 @@ import jakarta.persistence.criteria.Root;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import ru.hibernate.dao.UserDAOImpl;
 import ru.hibernate.entity.Category;
 import ru.hibernate.entity.User;
 
@@ -92,29 +93,31 @@ public class Main {
 //        session.close();
 //        HibernateUtil.close();
 
-        log.info("Hibernate tutorial started");
-
-        //сразу получаем готовый SessionFactory и сразу создаем сессию
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        User u1 = session.get(User.class, 10025L);
-        log.info(u1);
-        session.close();// закрыть первуб сессию
-
-        log.info("hit " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheHitCount());
-        log.info("miss " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheMissCount());
-        log.info("put " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCachePutCount());
-
-        for (String s: HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheRegionNames()) {
-            log.info(s);
-        }
-
-        // откроем новую сессию
-        session = HibernateUtil.getSessionFactory().openSession();
-        User u2 = session.get(User.class, 10025L); // должен получить его из L2C
-        log.info(u2);
-
-        session.close();// закрыть сессию
+//        log.info("Hibernate tutorial started");
+//
+//        //сразу получаем готовый SessionFactory и сразу создаем сессию
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//
+//        User u1 = session.get(User.class, 10025L);
+//        log.info(u1);
+//        session.close();// закрыть первуб сессию
+//
+//        log.info("hit " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheHitCount());
+//        log.info("miss " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheMissCount());
+//        log.info("put " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCachePutCount());
+//
+//        for (String s: HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheRegionNames()) {
+//            log.info(s);
+//        }
+//
+//        // откроем новую сессию
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        User u2 = session.get(User.class, 10025L); // должен получить его из L2C
+//        log.info(u2);
+//
+//        session.close();// закрыть сессию
+        UserDAOImpl userDAO = new UserDAOImpl();
+        log.info(userDAO.findAll("username.com"));
 
         HibernateUtil.close(); // закрыть Session Factory - очищается кеш 2го уровня
 

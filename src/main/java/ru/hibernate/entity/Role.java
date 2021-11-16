@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +33,10 @@ public class Role {
 
     private String name; // название роли
 
-	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users;
 
     @Override
