@@ -1,17 +1,7 @@
 package ru.hibernate;
 
-import jakarta.persistence.Query;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaUpdate;
-import jakarta.persistence.criteria.Root;
 import lombok.extern.log4j.Log4j2;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import ru.hibernate.dao.UserDAOImpl;
-import ru.hibernate.entity.Category;
-import ru.hibernate.entity.User;
-
-import java.util.List;
+import ru.hibernate.dao.impl.UserDAOImpl;
 
 
 @Log4j2

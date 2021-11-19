@@ -1,13 +1,15 @@
-package ru.hibernate.dao;
+package ru.hibernate.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import ru.hibernate.HibernateUtil;
+import ru.hibernate.dao.interfaces.CommonDAO;
+import ru.hibernate.dao.interfaces.objects.UserDAO;
 import ru.hibernate.entity.User;
 
 import java.util.List;
 
-public class UserDAOImpl implements CommonDAO<User> {
+public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> findAll() {
@@ -63,5 +65,15 @@ public class UserDAOImpl implements CommonDAO<User> {
         session.save(obj); // если id объекта будет заполнено - БД перезапишет это поле
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query<User> query = session.createQuery("FROM User WHERE email = :email");
+        query.setParameter("email", email);
+        User user = query.uniqueResult();
+        session.close();
+        return user;
     }
 }

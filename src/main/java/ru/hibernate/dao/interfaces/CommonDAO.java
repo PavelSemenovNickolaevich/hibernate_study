@@ -1,14 +1,9 @@
-package ru.hibernate.dao;
+package ru.hibernate.dao.interfaces;
 
 import java.util.List;
 
+//CRUD
 public interface CommonDAO<T> {
-
-    // получить абсолютно все значения
-    List<T> findAll();
-
-    // получить все значения по значению почты
-    List<T> findAll(String email);
 
     // получить одно значение по id
     T get(long id);
